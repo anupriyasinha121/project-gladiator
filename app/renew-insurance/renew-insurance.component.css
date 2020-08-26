@@ -1,0 +1,112 @@
+.wrap-form{
+    margin: 0 auto;
+    width:550px;
+    background-color: #f8f0ef;
+    padding: 20px;
+}
+
+@media(max-width: 550px){
+    .wrap-form{
+        margin: 0 auto;
+        width:100%;
+        background-color: #f8f0ef;
+        padding: 20px;
+    } 
+}
+
+.form-heading{
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+.renew-submit-button{
+    display: block;
+    width: 160px;
+    border-radius: 6px;
+    background-color: #95170e;
+    color: white;
+    border: none;
+    font-size: large;
+    padding: 5px;
+}
+
+
+
+.plan-type-button{
+    border: none;
+    background-color: #95170e;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+
+.plan-div{
+    padding: 25px;;
+}
+
+.plan-sub-div{
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+@media(max-width: 550px){
+    .plan-sub-div{
+        display: block;
+        padding: 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+
+
+
+.plan-sub-div{
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+@media(max-width: 550px){
+    .plan-sub-div{
+        display: block;
+        padding: 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+.submit-div{
+    margin: 0 auto;
+ }
+
+.payment-button{
+    display: block;
+    width: 160px;
+    border-radius: 6px;
+    background-color: #95170e;
+    color: white;
+    border: none;
+    font-size: large;
+    padding: 5px;
+}
+
+
+.plan-label{
+    display: block;
+}
+
+.plan-year-class{
+    padding: 25px;
+}
+
+.duration-label{
+    display: block;
+}

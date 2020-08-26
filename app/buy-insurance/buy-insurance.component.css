@@ -1,0 +1,204 @@
+.wrap-form{
+    margin: 0 auto;
+    width:550px;
+    background-color: #f8f0ef;
+    padding: 20px;
+}
+
+@media(max-width: 550px){
+    .wrap-form{
+        margin: 0 auto;
+        width:100%;
+        background-color: #f8f0ef;
+        padding: 20px;
+    } 
+}
+
+.form-heading{
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+.vehicle-type-button{
+    border: none;
+    background-color: #95170e;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.vehicle{
+    padding: 25px;;
+}
+
+.vehicle-type{
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+@media(max-width: 550px){
+    .vehicle-type{
+        display: block;
+        padding: 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+
+.vehicle{
+    padding: 25px;;
+}
+
+.vehicle-type{
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+@media(max-width: 550px){
+    .vehicle-type{
+        display: block;
+        padding: 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+.submit-button{
+    display: block;
+    width: 100px;
+    border-radius: 6px;
+    background-color: #95170e;
+    color: white;
+    border: none;
+    font-size: large;
+    padding: 5px;
+}
+
+.submit-div{
+   margin: 0 auto;
+}
+
+
+
+/*  */
+
+
+.plan-type-button{
+    border: none;
+    background-color: #95170e;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+
+.plan-div{
+    padding: 25px;;
+}
+
+.plan-sub-div{
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+@media(max-width: 550px){
+    .plan-sub-div{
+        display: block;
+        padding: 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+
+
+
+.plan-sub-div{
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+@media(max-width: 550px){
+    .plan-sub-div{
+        display: block;
+        padding: 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+.payment-button{
+    display: block;
+    width: 160px;
+    border-radius: 6px;
+    background-color: #95170e;
+    color: white;
+    border: none;
+    font-size: large;
+    padding: 5px;
+}
+
+
+.plan-label{
+    display: block;
+}
+
+.plan-year-class{
+    padding: 25px;
+}
+
+.duration-label{
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  */
+
+
+
+.racorner {
+    border-radius: 25px;
+    font-size: 19px;
+    border: 2px solid #73AD21;
+    /* border: 2px solid #95170e; */
+    padding: 15px; 
+    /* text-align: center; */
+    width: 100%;
+    margin: 10px;
+}
+
+.racorner2 {
+    border-radius: 10px;
+    /* border: 2px solid #95170e; */
+    border: 2px solid #73AD21;
+    padding: 30px; 
+    width: 100%;
+}

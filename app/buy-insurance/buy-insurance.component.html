@@ -1,0 +1,190 @@
+<div *ngIf="!form1Completed then firstForm else secondForm"></div>
+
+<ng-template #firstForm>
+
+<div style="padding: 20px;">
+    <div class="wrap-form">
+            <div>
+                <h3 class="form-heading">Buy Insurance</h3>
+            </div>
+
+            <div class="vehicle">
+                <div class="vehicle-type">
+                    <button class="vehicle-type-button" (click)="onVehicle4Click()" >4 Wheeler Insurance</button>
+                </div>
+                <div class="vehicle-type">
+                    <button class="vehicle-type-button" (click)="onVehicle2Click()">2 Wheeler Insurance</button>
+                </div>
+            </div>
+            
+            <form *ngIf="showForm1" [formGroup]="form1" (ngSubmit)="onSubmit1()">
+                <div class="form-group row">
+                    <label class="col-sm-11 offset-sm-1" for="">Manufacturer</label>
+                    <div class="col-sm-10 offset-sm-1">
+                        <select class="form-control" #mySelect formControlName="manuf"
+                        [ngClass]="{'is-invalid': (form1.get('manuf').touched && form1.get('manuf').invalid)
+                                    || (form1Submitted && f1.manuf.errors)}" (change)='onManuSelected(mySelect.value)'>
+                        <option value="">select</option>
+                        <option class='option' *ngFor='let manu of manufacturers' 
+                                [value]="manu">{{manu}}</option>
+                        </select>
+                        <div class="invalid-feedback">Select Manufacturer</div>
+                    </div>
+                    <!-- <div class="col-sm-10 offset-sm-1">
+                        <input type="text" class="form-control" formControlName="manuf"
+                        [ngClass]="{'is-invalid': (form1.get('manuf').touched && form1.get('manuf').invalid)
+                                    || (form1Submitted && f1.manuf.errors)}">
+                        <div class="invalid-feedback">Select Manufacturer</div>
+                    </div> -->
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-11 offset-sm-1" for="">Model</label>
+                    <div class="col-sm-10 offset-sm-1">
+                        <select class="form-control" #mySelect formControlName="model"
+                        [ngClass]="{'is-invalid': (form1.get('model').touched && form1.get('model').invalid)
+                                    || (form1Submitted && f1.model.errors)}">
+                        <option value="">select</option>
+                        <option class='option' *ngFor='let model of models' 
+                                [value]="model">{{model}}</option>
+                        </select>
+                        <div class="invalid-feedback">Select Manufacturer</div>
+                    </div>
+                    <!-- <div class="col-sm-10 offset-sm-1">
+                        <input type="text" class="form-control" formControlName="model"
+                        [ngClass]="{'is-invalid': (form1.get('model').touched && form1.get('model').invalid)
+                                                || (form1Submitted && f1.model.errors)}">
+                        <div class="invalid-feedback">Select Vehicle Model</div>
+                    </div> -->
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-11 offset-sm-1" for="">Engine Power</label>
+                    <div class="col-sm-10 offset-sm-1">
+                        <input type="number" class="form-control" formControlName="enginePower" 
+                        [ngClass]="{'is-invalid': (form1.get('enginePower').touched && form1.get('enginePower').invalid)
+                        || (form1Submitted && f1.enginePower.errors)}">
+                        
+                        <div class="invalid-feedback">Enter Engine Power</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-sm-11 offset-sm-1" for="">Driving Licence</label>
+                    <div class="col-sm-10 offset-sm-1">
+                        <input type="text" class="form-control" formControlName="drivingLicence" 
+                        [ngClass]="{'is-invalid': (form1.get('drivingLicence').touched && form1.get('drivingLicence').invalid)
+                                        || (form1Submitted && f1.drivingLicence.errors)}">
+                        <div class="invalid-feedback">Enter Driving Licence</div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-11 offset-sm-1" for="">Purchase date</label>
+                    <div class="col-sm-10 offset-sm-1">
+                        <input type="date" class="form-control" id="date" formControlName="purchaseDate" 
+                        [ngClass]="{'is-invalid': (form1.get('purchaseDate').touched && form1.get('purchaseDate').invalid)
+                                            || (form1Submitted && f1.purchaseDate.errors)}">
+                        <div class="invalid-feedback">
+                            <div>Enter Purchase date</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-11 offset-sm-1" for="">Registration Number</label>
+                    <div class="col-sm-10 offset-sm-1">
+                        <input type="text" class="form-control" formControlName="registrationNumber" 
+                        [ngClass]="{'is-invalid': (form1.get('registrationNumber').touched && form1.get('registrationNumber').invalid)
+                                    || (form1Submitted && f1.registrationNumber.errors)}">
+                        
+                        <div class="invalid-feedback">Enter Registration Number</div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-11 offset-sm-1" for="">Engine Number</label>
+                    <div class="col-sm-10 offset-sm-1">
+                        <input type="text" class="form-control" formControlName="engineNumber" 
+                        [ngClass]="{'is-invalid': (form1.get('engineNumber').touched && form1.get('engineNumber').invalid)
+                        || (form1Submitted && f1.engineNumber.errors)}">
+                        
+                        <div class="invalid-feedback">Enter Engine Number</div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-11 offset-sm-1" for="">Chassis Number</label>
+                    <div class="col-sm-10 offset-sm-1">
+                        <input type="text" class="form-control" formControlName="chassisNumber" 
+                        [ngClass]="{'is-invalid': (form1.get('chassisNumber').touched && form1.get('chassisNumber').invalid)
+                                        || (form1Submitted && f1.chassisNumber.errors)}">
+                        
+                        <div  class="invalid-feedback" >Enter Chassis Number</div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="submit-div">
+                        <button type="submit" class="submit-button">Submit</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #secondForm>
+
+<div style="padding: 20px;">
+    <div class="wrap-form">
+        
+            <div>
+                <h3 class="form-heading">Plans</h3>
+            </div>
+
+            <div class="plan-div">
+                <label class="plan-label" for="">Choose Plans</label>
+                <div class="plan-sub-div">
+                    <button class="plan-type-button" (click)="onTPLClick()">Third Party Liblity</button>
+                </div>
+                <div class="plan-sub-div">
+                    <button class="plan-type-button" (click)="onComprehensiveClick()">Comprehensive</button>
+                </div>
+            </div>
+
+        <form *ngIf="showForm2" [formGroup]="form2" (ngSubmit)="onSubmit2()">
+            <div class="plan-year-class">
+                <label class="duration-label" for="">Choose Plan year</label>
+                <div>
+                    <select class="form-control" formControlName="planYear" 
+                    [ngClass]="{'is-invalid': (form2.get('planYear').touched && form2.get('planYear').invalid)
+                    || (form2Submitted && f2.planYear.errors)}">
+                        <option value="">select</option>
+                        <option value="1">1 Year</option>
+                        <option value="2">2 Year</option>
+                        <option value="3">3 Year</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        <div>Choose Plan Duration</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="submit-div">
+                    <button type="submit" class="payment-button">Make Payment</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</ng-template>

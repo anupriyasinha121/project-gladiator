@@ -1,0 +1,72 @@
+input.hidden {
+    position: absolute;
+    left: -9999px;
+}
+
+.policy-button{
+    border: none;
+    background-color: #95170e;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+
+.policy-div{
+    display: inline-block;
+    padding: 10px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+@media(max-width: 550px){
+    .policy-div{
+        display: block;
+        padding: 10px;
+        margin: 0 auto;
+        width: 80%;
+    }
+}
+
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+}
+
+.profile-heading-div{
+padding: 15px;
+background-color: #f8f0ef;
+width: 100%;
+}
+
+.profile-heading-class{
+    display: inline-block;
+    width: 85%;
+}
+
+/* .profile-heading{
+   
+} */
+
+.logout-button-class{
+    display: inline-block;
+    width: 13%;
+}
+
+.logout-button{
+    background-color: #95170e;
+    color: white;
+    font-weight: 600;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+.profile-card{
+    padding: 20px;
+    border-width: 5px;
+    background-color: antiquewhite;
+}

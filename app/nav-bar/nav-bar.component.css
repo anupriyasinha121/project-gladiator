@@ -1,0 +1,15 @@
+.navbar {
+  width: 100%;
+  background-color: #c5daf2;
+  font-size: 18px;
+  overflow: auto;
+}
+  
+/* .nav-div{
+  width: 15%;
+} */
+
+.nav-link-style{
+    color: #0a4b8d;
+    font-weight: 600;
+}

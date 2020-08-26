@@ -1,0 +1,42 @@
+.wrap-form{
+    margin: 0 auto;
+    width:550px;
+    background-color: #f8f0ef;
+    padding: 20px;
+    color: #5a0e09;
+}
+
+@media(max-width: 550px){
+    .wrap-form{
+        margin: 0 auto;
+        width:100%;
+        background-color: #f8f0ef;
+        padding: 20px;
+    } 
+}
+
+.form-heading{
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+.submit-button{
+    display: block;
+    width: 100px;
+    border-radius: 6px;
+    background-color: #95170e;
+    color: white;
+    border: none;
+    font-size: large;
+    padding: 5px;
+}
+
+.submit-div{
+   margin: 0 auto;
+}
+
+
+
+
+
+

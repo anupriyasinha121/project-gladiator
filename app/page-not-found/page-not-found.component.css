@@ -1,0 +1,25 @@
+.page-not-found-heading{
+    padding: 100px;
+    text-align: center;
+    font-size: 50px;
+    color: steelblue;
+}
+
+
+/* .pnf-div{
+    align-content: center;
+}
+
+.pnf-class{
+    color: antiquewhite;
+} */
+
+.pnf-button{
+    color: steelblue;
+    background-color: white;
+    padding: 10px;
+    width: 140px;
+    font-weight: 600;
+    font-size: 22px;
+    border-color: steelblue;
+}
