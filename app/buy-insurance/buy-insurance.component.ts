@@ -5,6 +5,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Buy } from './buy';
+import { Premium } from "../calculate-insurance/premium";
+import { ResultPremium } from "../calculate-insurance/resultPremium";
+import { CalculateInsuranceService } from "../services/calculate-insurance.service";
 
 @Component({
   selector: 'app-buy-insurance',
@@ -36,20 +39,25 @@ export class BuyInsuranceComponent implements OnInit {
   vehicleType: number = 0;
   showForm2:boolean = false;
   plan:String = "";
+  amount:number;
   form2Submitted: boolean = false;
   form1Submitted: boolean = false;
   form1Completed:boolean = false;
-
+  tpl:any=null;
+  comp:any=null;
   buy:Buy = new Buy();
 
   manufacturers: String[] =["Honda","Tata"]
   models: String[] =["city","Indigo"]
+  isLogged:number=0;
 
-
-  constructor(private router: Router, private buyService: BuyService, private vehicleService: VehicleService) { }
+  constructor(private router: Router, private buyService: BuyService, private vehicleService: VehicleService,private calcService:CalculateInsuranceService) { }
 
   ngOnInit(): void {
-
+    this.isLogged= parseInt(sessionStorage.getItem("isLogged"));
+     if(this.isLogged<=0){
+       this.router.navigateByUrl("/login"); 
+     }
   }
 
   onVehicle2Click(){
@@ -84,11 +92,13 @@ export class BuyInsuranceComponent implements OnInit {
   onTPLClick(){
     this.showForm2 = true;
     this.plan = "TPL";
+    this.amount=this.tpl;
   }
 
   onComprehensiveClick(){
     this.showForm2 = true;
     this.plan = "COM";
+    this.amount=this.comp;
   }
 
   get f1() { 
@@ -120,14 +130,30 @@ export class BuyInsuranceComponent implements OnInit {
       this.buy.enginePower = this.form1.controls['enginePower'].value;
       this.buy.chassisNumber = this.form1.controls['chassisNumber'].value;
       
+      const currentDate : Date= new Date();
+      const purchase: Date = new Date(this.form1.controls['purchaseDate'].value);
+
+      var prem=new Premium();
+      prem.age=(currentDate.getTime()-purchase.getTime())/31560000000;
+      prem.enginePower=this.form1.controls['enginePower'].value;
+      prem.type=this.vehicleType;
+      prem.model=this.form1.controls['model'].value;
+
+      var resultP=new ResultPremium();
+
+        let res = this.calcService.calculatePremium(prem).subscribe(data=>{
+          resultP=data;
+            this.tpl=resultP.resultTpl;
+            this.comp=resultP.resultComp;
       // this.router.navigateByUrl("/buy-policy");
 
       // To direct user to other pafe
       // this.router.navigateByUrl("/buy-policy");
       //                                URL
     }
+        )
   }
-
+}
 
   get f2() { 
     return this.form2.controls; 
@@ -139,9 +165,11 @@ export class BuyInsuranceComponent implements OnInit {
         return;
     }else{
       this.buy.plan = this.plan;
+      this.buy.amount=this.amount;
       this.buy.planDuration = this.form2.controls['planYear'].value;
-
-      var response = this.buyService.buyPolicy(this.buy)
+      var userId = sessionStorage.getItem("customerId");
+      console.log("call server " + userId);
+      var response = this.buyService.buyPolicy(this.buy, userId)
       .subscribe((policyNumber)=>{
           alert("Policy Id : " + policyNumber);
           this.router.navigate(['user-profile']);

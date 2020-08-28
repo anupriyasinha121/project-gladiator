@@ -16,8 +16,6 @@
     
         <form *ngIf="form1Completed" [formGroup]="form1" (ngSubmit)="onForm1Submit()" novalidate>
            
-
-            
             <div class="form-group row">
                 <label class="col-sm-11 offset-sm-1" for="">Age</label>
                 <div class="col-sm-10 offset-sm-1">
@@ -28,7 +26,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="form-group row">
                 <label class="col-sm-11 offset-sm-1" for="">Engine Power</label>
@@ -47,11 +44,14 @@
             <div class="form-group row">
                 <label class="col-sm-11 offset-sm-1" for="">Model</label>
                 <div class="col-sm-10 offset-sm-1">
-                    <input type="text" class="form-control" formControlName="Model" 
-                    [ngClass]="{'is-invalid': form1.get('Model').touched && form1.get('Model').invalid || (submitted && f1.Model.errors)}">
-                    <div class="invalid-feedback">
-                        <div>Enter Model Number</div>
-                    </div>
+                    <select class="form-control" #mySelect formControlName="Model"
+                    [ngClass]="{'is-invalid': (form1.get('Model').touched && form1.get('Model').invalid)
+                                || (form1Submitted && f1.Model.errors)}">
+                    <option value="">select</option>
+                    <option class='option' *ngFor='let model of models' 
+                            [value]="model">{{model}}</option>
+                    </select>
+                    <div class="invalid-feedback">Select Manufacturer</div>
                 </div>
             </div>
 
@@ -67,19 +67,23 @@
             </div>
 
         </form>
-     
 
         <div *ngIf="show">
 
             <div class="vehicle">
                 <div class="vehicle-type">
-                    <button class="vehicle-type-button" >Third Party Premium: Rs.{{tpl}}</button>
+                    <button class="calc-type-button" >Third Party Premium: Rs.{{tpl}}</button>
                 </div>
                 <div class="vehicle-type">
-                    <button class="vehicle-type-button">Comprehensive Premium: Rs.{{comp}}</button>
+                    <button class="calc-type-button">Comprehensive Premium: Rs.{{comp}}</button>
                 </div>
             </div>
 
+            <div class="form-group row">
+                <div class="submit-div">
+                    <button class="calc-type-button">IDV value: Rs.{{idv}}</button>
+                </div>
+            </div>
 
         </div>
 

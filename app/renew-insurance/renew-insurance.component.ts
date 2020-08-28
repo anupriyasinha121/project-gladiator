@@ -28,12 +28,18 @@ export class RenewInsuranceComponent implements OnInit {
   plan: string;
   form1Submitted: boolean;
   form1Completed: boolean;
-
   renewDetail:Renew = new Renew();
+  isLogged:number=0;
 
   constructor(private router: Router, private renewService : RenewService) { }
 
   ngOnInit(): void {
+
+    this.isLogged= parseInt(sessionStorage.getItem("isLogged"));
+    if(this.isLogged<=0){
+      this.router.navigateByUrl("/login"); 
+    }
+
   }
 
   get f1() { 
@@ -79,12 +85,12 @@ export class RenewInsuranceComponent implements OnInit {
     }else{
       this.renewDetail.plan = this.plan;
       this.renewDetail.planDuration = this.form2.controls['planYear'].value;
-
-      var response = this.renewService.renewPolicy(this.renewDetail).subscribe((policyNumber)=>{
+      var userId = sessionStorage.getItem("customerId");
+      console.log("call server " + userId);
+      var response = this.renewService.renewPolicy(this.renewDetail, userId).subscribe((policyNumber)=>{
           alert("Policy Id : " + policyNumber);
           this.router.navigate(['user-profile']);
       })
-
     }
   }
 

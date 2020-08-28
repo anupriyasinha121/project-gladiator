@@ -10,7 +10,7 @@ export class BuyService {
 
   constructor(private http: HttpClient) { }
 
-  buyPolicy(buy: Buy): Observable<any>{
+  buyPolicy(buy: Buy, userId:String): Observable<any>{
     console.log("Vehicle Type " + buy.vehicleType);
     console.log("Manu " + buy.manufacturer);
     console.log("Model " + buy.model);
@@ -23,7 +23,7 @@ export class BuyService {
     console.log("Plan " + buy.plan);
     console.log("Plan Duration " + buy.planDuration);
 
-    var url = "http://localhost:8090/buy-policy";
+    var url = "http://localhost:8090/buy-policy/"+userId;
 
     return this.http.post(url, buy);
 

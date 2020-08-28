@@ -11,16 +11,18 @@ import { RegisterService } from '../register.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-
+  isLogged:number = 0;
   constructor(private formBuilder: FormBuilder,private router: Router, private registerService: RegisterService) { }
 
   ngOnInit() {
 
-    if(sessionStorage.getItem("customerId")!=null){
-      this.router.navigateByUrl("/home"); 
+    this.isLogged= parseInt(sessionStorage.getItem("isLogged"));
+     if(this.isLogged>0){
+       this.router.navigateByUrl("/home"); 
     }
 
       this.registerForm = this.formBuilder.group({
@@ -67,12 +69,16 @@ export class RegisterComponent implements OnInit {
         customerregister.contact = this.registerForm.controls['contact'].value;
 
         let res = this.registerService.registration(customerregister).subscribe((user)=>{
-        alert("Registration Detail " + JSON.stringify(user))
-        sessionStorage.setItem('customerName', user.name);
-        sessionStorage.setItem('customerId', user.email);
-        alert("After setting session " + sessionStorage.getItem("customerId"));
-        this.router.navigateByUrl("/user-profile");  
-                                    
+        if(user==null){
+          alert("User Already Exist");
+        }else{
+          // alert("Registration Detail " + JSON.stringify(user))
+          sessionStorage.setItem('customerName', user.name);
+          sessionStorage.setItem('customerId', user.email);
+          // alert("After setting session " + sessionStorage.getItem("customerId"));
+          this.router.navigateByUrl("/home");
+        }
+                           
       })
     }       
   }     

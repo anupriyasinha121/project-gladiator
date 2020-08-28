@@ -1,7 +1,7 @@
 .wrap-form{
     margin: 0 auto;
     width:550px;
-    background-color: rgb(255, 240, 250);
+    background-color: #f8f0ef;
     padding: 20px;
 }
 
@@ -9,7 +9,7 @@
     .wrap-form{
         margin: 0 auto;
         width:100%;
-        background-color: rgb(255, 240, 250);
+        background-color: #f8f0ef;
         padding: 20px;
     } 
 }
@@ -22,7 +22,16 @@
 
 .vehicle-type-button{
     border: none;
-    background-color: #3d4a71;
+    background-color: #95170e;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.calc-type-button{
+    border: none;
+    background-color: #95170e;
     color: white;
     padding: 8px;
     border-radius: 4px;
@@ -78,7 +87,7 @@
     display: block;
     width: 200px;
     border-radius: 6px;
-    background-color: #2e4ca7;
+    background-color: #95170e;
     color: white;
     border: none;
     font-size: large;

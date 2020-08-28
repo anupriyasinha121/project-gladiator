@@ -1,3 +1,4 @@
+import { ResetPassword } from './reset-password/reset';
 import { User } from './login/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
@@ -27,5 +28,11 @@ export class LoginService {
       console.log("email " + login.email);
       console.log("password " + login.password);
       return this.http.post<User>("http://localhost:8090/admin-login", login);
+    }
+
+    forgotPassword(reset:ResetPassword):  Observable<any>{
+      console.log("email " + reset.email);
+      console.log("password " + reset.password);
+      return this.http.post<User>("http://localhost:8090/forgotPassword", reset);
     }
 }

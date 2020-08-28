@@ -1,66 +1,40 @@
-.wrap-form{
-    margin: 0 auto;
-    width:450px;
-    background-color: #f8f0ef;
-    padding: 20px;
-    color: #5a0e09;
-}
-
-@media(max-width: 450px){
-    .wrap-form{
-        margin: 0 auto;
-        width:100%;
-        background-color: #f8f0ef;
-        padding: 20px;
-    } 
-}
-
-.form-heading{
-    display: block;
-    text-align: center;
-    font-weight: 600;
-}
-
-.password-type-button{
-    border: none;
-    background-color: #95170e;
-    color: white;
-    padding: 8px;
-    border-radius: 4px;
+ table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
     width: 100%;
+    padding: 70px;
+  }
+  
+   td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 13px;
+  }
+
+  th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 13px;
+  }
+  
+  .border {
+    border-radius: 10px;
+    border: 2px solid #f8f0ef;
+    background-color: #f8f0ef;
+    padding: 30px; 
+    width: 70%;
+    margin-left:180px;
 }
 
-.change-password{
-    padding: 25px;;
-}
-
-.password-type{
-    display: inline-block;
-    padding: 10px;
-    margin: 0 auto;
-    width: 50%;
-}
-
-@media(max-width: 450px){
-    .vehicle-type{
-        display: block;
-        padding: 10px;
-        margin: 0 auto;
-        width: 100%;
-    }
-}
-
-.submit-button{
-    display: block;
-    width: 100px;
-    border-radius: 6px;
-    background-color: #95170e;
-    color: white;
+.button{
+    background-color: salmon;
+    color: #ffffff;
     border: none;
-    font-size: large;
-    padding: 5px;
-}
-
-.submit-div{
-   margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 20px;
+    /* margin: 20px; */
+    font-family: Raleway;
+    cursor: pointer;
+    position: relative;
+    /* left: 90%; */
 }

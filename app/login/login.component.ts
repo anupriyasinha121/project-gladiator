@@ -11,19 +11,20 @@ import { Login } from './login';
 export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
+  isLogged:number = 0;
 
   constructor(private formBuilder: FormBuilder,private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
-
-     if(sessionStorage.getItem("customerId")!=null){
+    this.isLogged= parseInt(sessionStorage.getItem("isLogged"));
+     if(this.isLogged>0){
        this.router.navigateByUrl("/home"); 
      }
    
     this.registerForm = this.formBuilder.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required]
-    } );
+    });
   }
 
   // convenience getter for easy access to form fields
@@ -40,24 +41,21 @@ export class LoginComponent implements OnInit {
         var login  = new Login();
         login.email = this.registerForm.controls['email'].value;
         login.password = this.registerForm.controls['password'].value;
-        alert(this.registerForm.controls['email'].value+ " " + this.registerForm.controls['password'].value );      
+        // alert(this.registerForm.controls['email'].value+ " " + this.registerForm.controls['password'].value );      
 
           let res = this.loginService.userLogin(login).subscribe((data)=>{
           if(data!=null){
-            alert("Customer detail from server " + JSON.stringify(data));
+            // alert("Customer detail from server " + JSON.stringify(data));
+            sessionStorage.setItem("isLogged", "10");
             sessionStorage.setItem('customerName', data.name);
             sessionStorage.setItem('customerId', data.email);
-            alert("Session customerId :"+sessionStorage.getItem("customerId"));
-            this.router.navigate(['/user-profile']);
+            // alert("Session customerId :"+sessionStorage.getItem("customerId"));
+            window.location.reload();
+            this.router.navigate(['/home']);
           }else{
             alert("Some credentials are Incorrect");
-          }   
-        })
-
-      // display form values on success
-      //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+        }   
+      })
+    }
   }
-
-  
-}
 }

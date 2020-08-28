@@ -1,8 +1,7 @@
+import { AdminService } from './../services/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { Login } from '../login/login';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../login.service';
+import { CustomerClaim } from '../user-profile/customer-claim';
 
 @Component({
   selector: 'app-admin',
@@ -11,45 +10,41 @@ import { LoginService } from '../login.service';
 })
 export class AdminComponent implements OnInit {
 
-  registerForm: FormGroup;
-  submitted = false;
+  constructor(private router: Router, private adminService: AdminService) { }
 
-  constructor(private formBuilder: FormBuilder,private router: Router, private loginService: LoginService) { }
+  currentUser:String = "";
+  pendingClaims:CustomerClaim[] = [];
+  status:String = "";
+  amount:number = 0;
 
-  ngOnInit() {
-      this.registerForm = this.formBuilder.group({
-          email: ['', [Validators.required, Validators.email]],
-          password: ['', Validators.required]
-      } );
+  ngOnInit(): void {
+      this.currentUser = sessionStorage.getItem("customerId");
+      if(this.currentUser!="admin"){
+        this.router.navigate(['admin-login']);
+      }
+
+      var res =  this.adminService.getPendingPolicy().subscribe((data)=>{ 
+        console.log("Models from server " + JSON.stringify(data));
+        this.pendingClaims = data;
+      })
   }
+  
+  updateClaim(claim: CustomerClaim){
+    var updatedClaim = new CustomerClaim();
 
-  // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+    updatedClaim.claimId = claim.claimId;
+    updatedClaim.claimDate = claim.claimDate;
+    updatedClaim.claimAmount = this.amount;
+    updatedClaim.claimReason = claim.claimReason;
+    updatedClaim.policyId = claim.policyId;
 
-  onSubmit() {
-      this.submitted = true;
+    let res = this.adminService.updatePolicy(updatedClaim).subscribe((data)=>{
 
-      // stop here if form is invalid
-      if (this.registerForm.invalid) {
-          return;
-      }else{
+    });
 
-        var login  = new Login();
-        login.email = this.registerForm.controls['email'].value;
-        login.password = this.registerForm.controls['password'].value;
-        alert(this.registerForm.controls['email'].value+ " " + this.registerForm.controls['password'].value );      
-
-          let res = this.loginService.adminLogin(login).subscribe((data)=>{
-          if(data!=null){
-            alert("Customer detail from server " + JSON.stringify(data));
-            sessionStorage.setItem('customerName', data.name);
-            sessionStorage.setItem('customerId', data.email);
-            alert("Session customerId :"+sessionStorage.getItem("customerId"));
-            this.router.navigate(['/user-profile']);
-          }else{
-            alert("Some credentials are Incorrect");
-          }   
-        })
-   }  
+    res =  this.adminService.getPendingPolicy().subscribe((data)=>{
+      console.log("Models from server " + JSON.stringify(data));
+      this.pendingClaims = data;
+    });
   }
 }

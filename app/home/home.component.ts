@@ -42,5 +42,4 @@ export class HomeComponent implements OnInit {
   onCalculateClick(){
     this.router.navigateByUrl("/calculate-premium");
   }
-
 }

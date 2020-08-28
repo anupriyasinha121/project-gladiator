@@ -2,7 +2,7 @@ import { BuyService } from './services/buy.service';
 import { ClaimService } from './services/claim.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BuyInsuranceComponent } from './buy-insurance/buy-insurance.component';
@@ -22,8 +22,10 @@ import { RegisterComponent} from './register/register.component'
 import { HttpClientModule } from "@angular/common/http";
 import { RegisterService } from './register.service';
 import { LoginService} from './login.service';
-import { AdminComponent } from './admin/admin.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AdminComponent } from './admin/admin.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -42,14 +44,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ResetPasswordComponent,
     LoginComponent,
     RegisterComponent,
+    AdminLoginComponent,
+    PageNotFoundComponent,
     AdminComponent,
-    PageNotFoundComponent
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [ClaimService,
     BuyService,

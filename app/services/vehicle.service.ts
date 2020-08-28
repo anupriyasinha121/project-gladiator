@@ -29,4 +29,14 @@ export class VehicleService {
 
   }
 
+  getModelsByType(type:number): Observable<String[]>{
+
+    console.log("Service, type received " + type);
+
+    var url = "http://localhost:8090/models-by-type";
+
+    return this.http.post<String[]>(url, type);
+
+  }
+
 }

@@ -10,5 +10,6 @@ export class Buy{
     chassisNumber:any;
     plan:any;
     planDuration:any;
+    amount:any;
     
 }

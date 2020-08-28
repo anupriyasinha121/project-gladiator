@@ -16,10 +16,16 @@ export class ClaimInsuranceComponent implements OnInit {
   validForm: ValidationService = new ValidationService();
   form: FormGroup;
   submitted: boolean;
+  isLogged: number=0;
 
   constructor(private router: Router, private claimService: ClaimService) { }
 
   ngOnInit(): void {
+
+    this.isLogged= parseInt(sessionStorage.getItem("isLogged"));
+     if(this.isLogged<=0){
+       this.router.navigateByUrl("/login"); 
+     }
 
     this.form = new FormGroup({
       policyNumber: new FormControl('', Validators.required),
@@ -47,24 +53,18 @@ export class ClaimInsuranceComponent implements OnInit {
       claim.mobileNumber = this.form.controls['mobileNumber'].value;
       claim.policyNumber = this.form.controls['policyNumber'].value;
       alert(this.form.controls['policyNumber'].value+ " " + this.form.controls['mobileNumber'].value + " " +this.form.controls['claimReason'].value);      
-      
-      let res = this.claimService.claimPolicy(claim).subscribe(
-        user=>{
-          // if(user.status=='SUCCESS')
-          // {
-            // let userName= user.userNameFirst;
-            // let userId= user.userId;
-  
-            // sessionStorage.setItem('userName', userName)
-            // sessionStorage.setItem('userId', userId)
-            this.router.navigate(['home'])
-          // }
-          // else
-          // {
-          //   alert(user.status)
-            // this.message=user.message
-            // this.router.navigate(['user'])
-          // }
+      var userId = sessionStorage.getItem("customerId");
+      console.log("call server " + userId);
+      let res = this.claimService.claimPolicy(claim, userId).subscribe(
+        (claimNumber)=>{
+          
+            if(parseInt(claimNumber)<0){
+              alert("Invalid Policy Number")
+            }else{
+              alert("Your Claim NUmber is" + claimNumber);
+              this.router.navigate(['home'])
+            }
+         
         }
       )
       console.log(res);

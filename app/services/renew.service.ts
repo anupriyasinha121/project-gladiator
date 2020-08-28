@@ -9,7 +9,7 @@ export class RenewService {
 
   constructor(private http: HttpClient) { }
 
-  renewPolicy(renew : Renew){
+  renewPolicy(renew : Renew, userId:String){
 
     console.log("" + renew.email);
     console.log("" + renew.policyNumber);
@@ -17,7 +17,7 @@ export class RenewService {
     console.log("" + renew.plan);
     console.log("" +renew.planDuration);
 
-    var url = "http://localhost:8090/renew-policy";
+    var url = "http://localhost:8090/renew-policy/" + userId;
 
     return this.http.post(url, renew);
 

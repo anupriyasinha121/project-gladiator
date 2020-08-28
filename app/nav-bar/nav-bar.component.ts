@@ -12,26 +12,32 @@ export class NavBarComponent implements OnInit {
 
   process:String = "Login";
   isUserLoggedIn:boolean = false;
+  currentUser: String;
+  isLogged:number = 0;
 
   ngOnInit(): void {
-    // alert(sessionStorage.getItem("customerId"))
-    // if(sessionStorage.getItem("customerId")!==null){
-    //   alert("onInit "+ sessionStorage.getItem("customerId"));
-    //   this.process="Logout";
-    //   this.isUserLoggedIn = true;
-    // }
+    this.isLogged= parseInt(sessionStorage.getItem("isLogged"));
+    // alert("onInit "+sessionStorage.getItem("customerId"))
+    if(this.isLogged>0){
+      // alert("onInit inside if "+ sessionStorage.getItem("customerId"));
+      this.process="Logout";
+      this.isUserLoggedIn = true;
+    }
   }
 
   onLogClick(){
-    // if(sessionStorage.getItem("customerId")!=null){
-    //   sessionStorage.setItem("customerId", null);
-    //   sessionStorage.setItem("customerName", null);
-    //   this.process="Login";
-    //   this.isUserLoggedIn = false;
-    //   this.router.navigateByUrl("/");
-    // }else{
-    //   this.router.navigateByUrl("/login");
-    // }
+    this.isLogged= parseInt(sessionStorage.getItem("isLogged"));
+    
+    if(this.isLogged>0){
+      sessionStorage.setItem("customerId", "");
+      sessionStorage.setItem("customerName", "");
+      sessionStorage.setItem("isLogged", "0");
+      this.process="Login";
+      this.isUserLoggedIn = false;
+      this.router.navigateByUrl("/");
+    }else{
+      this.router.navigateByUrl("/login");
+    }
   }
 
 }

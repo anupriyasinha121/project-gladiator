@@ -5,7 +5,8 @@ import { Premium } from "./premium";
 import { CalculateInsuranceService } from "../services/calculate-insurance.service";
 import { Router } from "@angular/router";
 import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { ResultPremium } from "./resultPremium";
+import { ResultPremium } from "./result-premium";
+import { VehicleService } from '../services/vehicle.service';
 
 @Component({
   selector: 'app-calculate-insurance',
@@ -23,9 +24,11 @@ export class CalculateInsuranceComponent implements OnInit {
   vehicleType: number = 0;
   tpl:any=null;
   comp:any=null;
+  idv:any=null;
   
+  models: String[] =[]
   
-  constructor(private router: Router,private formBuilder: FormBuilder,private calcService:CalculateInsuranceService) { }
+  constructor(private vehicleService: VehicleService, private router: Router,private formBuilder: FormBuilder,private calcService:CalculateInsuranceService) { }
 
   ngOnInit(){
     this.form1 = this.formBuilder.group({
@@ -40,12 +43,22 @@ export class CalculateInsuranceComponent implements OnInit {
   onVehicle2Click(){
     this.vehicleType = 2;
     this.form1Completed = true;
-
+    this.getVehicleModel();
   }
   
   onVehicle4Click(){
     this.vehicleType = 4;
     this.form1Completed = true;
+    this.getVehicleModel();
+  }
+
+
+  getVehicleModel(){
+    console.log(this.vehicleType)
+    var res = this.vehicleService.getModelsByType(this.vehicleType).subscribe((data)=>{
+      console.log("Manu from server " + JSON.stringify(data));
+      this.models = data;
+    })
   }
   
 
@@ -87,6 +100,7 @@ export class CalculateInsuranceComponent implements OnInit {
             this.router.navigate(['calculate-premium']);
             this.tpl=resultP.resultTpl;
             this.comp=resultP.resultComp;
+            this.idv = resultP.idv;
             // console.log("TPL: "+resultP.resultTpl);
             // console.log("Comp: "+resultP.resultComp);
           // }
@@ -107,6 +121,3 @@ export class CalculateInsuranceComponent implements OnInit {
 
     }
   }
-  
-
-
